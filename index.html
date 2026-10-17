@@ -395,7 +395,7 @@ body[data-view="public"]:not(.tl) #teacher{display:none}
 body:not([data-view="public"]) :is(#home,#contact){display:none}
 body[data-view="student"] :is(.stages,#teacher){display:none}
 body[data-view="student"] .board{margin-top:0}
-body[data-view="teacher"] :is(#dashboard,#points,#merit,#about,#how,.up,.handed){display:none!important}
+body[data-view="teacher"] :is(#dashboard,#points,#merit,#about,#how,#classes,.up,.handed){display:none!important}
 .ng-t{display:none}body[data-view="teacher"] .ng-t{display:flex}body[data-view="teacher"] .ng-s{display:none}
 .me{width:min(100%,300px);margin:14px 30px 20px}
 .scard .btn.ghost{color:var(--bg);border-color:rgba(255,255,255,.3)}
@@ -439,6 +439,36 @@ body[data-view="teacher"] :is(#dashboard,#points,#merit,#about,#how,.up,.handed)
 .vbox{display:grid;gap:6px;border:2px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--bg)}
 .fb audio{display:block;margin-top:4px}
 .tlink.sm2{font-size:12px;font-weight:500;color:var(--muted)}
+.crumbs{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px;font-size:14px;color:var(--muted)}
+.crumb{border:0;background:none;padding:0;font-weight:600;color:var(--sky);font-size:15px}.crumb.now{color:var(--ink)}
+.tclasses{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.tclass{display:grid;justify-items:start;gap:2px;text-align:left;background:var(--surface);border:2.5px solid var(--line);border-radius:20px;padding:14px;border-bottom:7px solid var(--c)}
+.tclass:hover{border-color:var(--ink);border-bottom-color:var(--c)}
+.tclass .bee{width:64px;height:54px}.tclass b{font-family:var(--f-display);font-size:24px;color:var(--c)}.tclass span{font-size:13px;color:var(--muted)}
+.tclass em,.tstud em{font-style:normal;font-size:12px;font-weight:600;background:var(--coral);color:#fff;border-radius:999px;padding:2px 9px;margin-top:4px}
+.tclass i{font-style:normal;font-size:12px;color:var(--leaf);font-weight:600;margin-top:4px}
+.tweeks{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tstuds{display:grid;gap:8px}
+.tstud{display:grid;grid-template-columns:48px minmax(80px,1fr) minmax(110px,1.4fr) auto auto;gap:10px;align-items:center;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:8px 14px}
+.tstud:hover{border-color:var(--ink)}
+.tstud .bee{width:48px;height:40px}.tstud .nm{font-weight:600;font-size:16px;overflow-wrap:anywhere}
+.tstud .pr{display:grid;gap:4px;font-size:12px;color:var(--muted)}
+.tstud .pp{display:inline-flex;gap:4px;align-items:center;font-family:var(--f-display);font-weight:900;font-size:18px;color:var(--honey-d)}.tstud .pp svg{width:14px;height:14px}
+@media (max-width:600px){.tstud{grid-template-columns:44px 1fr auto}.tstud .pr{grid-column:2/-1;grid-row:2}.tstud em{grid-column:2/-1}}
+.tme{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--ink);color:var(--bg);border-radius:20px;padding:14px 18px;margin-bottom:10px}
+.tme .bee{width:64px;height:54px}.tme b{font-family:var(--f-display);font-size:26px;display:block}.tme span{font-size:13px;opacity:.85}
+.tme>div:nth-child(2){flex:1;min-width:140px}.tmepts b{color:var(--honey);text-align:right}.tmepts{text-align:right}
+.tmerit{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-bottom:14px}
+.tmerit label{display:grid;gap:4px;font-size:12px;font-weight:600;color:var(--muted);flex:1;min-width:180px}
+.tmerit input{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:9px 11px}
+.trows{display:grid;gap:8px}
+.trow{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;border:2px solid var(--line);border-radius:16px;padding:10px 14px}
+.trow .type i{width:34px;height:34px}.trow .type{color:var(--t)}
+.ti{min-width:0;display:grid;gap:2px}.ti b{font-family:var(--f-kid);font-size:16px}.ti>span{font-size:12px;color:var(--muted)}
+.tchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.badge{background:var(--bg);border:1.5px solid var(--line)}
+.tact{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:600px){.trow{grid-template-columns:34px 1fr}.tact{grid-column:1/-1;justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -454,7 +484,6 @@ body[data-view="teacher"] :is(#dashboard,#points,#merit,#about,#how,.up,.handed)
     <a href="#points" data-go="points"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22l-8.7-5V7z"/></svg>Bee Points<em id="nPts">0</em></a>
   </nav>
   <nav class="ngrp ng-s" aria-label="Learning"><span>Learning</span>
-    <a href="#classes" data-go="classes" data-type="all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v10h14V10M10 20v-5h4v5"/></svg>My class</a>
     <a href="#classes" data-go="classes" data-type="cw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Classwork</a>
     <a href="#classes" data-go="classes" data-type="hw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9H3z"/><path d="M10 20v-5h4v5"/></svg>Homework</a>
     <a href="#classes" data-go="classes" data-type="qz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3 2.4c-.6.2-.5.8-.5 1.6M12 17h.01"/></svg>Quizzes</a>
@@ -465,7 +494,8 @@ body[data-view="teacher"] :is(#dashboard,#points,#merit,#about,#how,.up,.handed)
     <a href="#how" data-go="how"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>About Scribblebee</a>
   </nav>
   <nav class="ngrp ng-t" aria-label="Teacher"><span>Teacher</span>
-    <a href="#teacher" data-go="teacher" data-tv="subs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg>Submissions</a>
+    <a href="#teacher" data-go="teacher" data-tv="classes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v10h14V10M10 20v-5h4v5"/></svg>My classes</a>
+    <a href="#teacher" data-go="teacher" data-tv="subs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg>All submissions</a>
     <a href="#teacher" data-go="teacher" data-tv="merit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 6h3a3 3 0 0 1-3 4M7 6H4a3 3 0 0 0 3 4"/></svg>Merit chart</a>
     <a href="#teacher" data-go="teacher" data-tv="students"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Students</a>
     <a href="#teacher" data-go="teacher" data-tv="tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg>Tasks</a>
@@ -881,7 +911,7 @@ let me=sget("sb-me",null);          // {cls,name,pin}
 let MD=null;                        // student data from server
 const TC={};                        // tasks by class name
 let tErr={};
-let TP=sget("sb-tpin",null,true), TD=null, tView="subs", tCls="Year 1", tNeeds=false;
+let TP=sget("sb-tpin",null,true), TD=null, tView="classes", tCls="Year 1", tNeeds=false, tcView=null, tStu=null, tWeek=0;
 const h0=location.hash.slice(1);if(CN[h0])st.stage=h0;
 if(me&&CID[String(me.cls).toLowerCase()])st.stage=CID[me.cls.toLowerCase()];
 
@@ -1079,9 +1109,10 @@ function renderT(){setView();
   const box=$("#tBody");
   if(!TP){box.innerHTML=`<form class="tlogin" id="tLogin" novalidate><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><div><b>Teacher sign in</b><p>Only Ms. Doaa can open this area.${API_URL?"":" Preview PIN: 2026"}</p></div><label for="tPin" class="sr">Teacher PIN</label><input id="tPin" type="password" inputmode="numeric" placeholder="Teacher PIN" autocomplete="off"><button class="btn main" type="submit">Open</button><p class="lerr" id="tErr" hidden></p></form>`;return}
   if(!TD){box.innerHTML=`<div class="cempty">Loading the teacher area…</div>`;return}
-  const tabs=[["subs","Submissions"],["merit","Merit chart"],["students","Students"],["tasks","Tasks"]];
+  const tabs=[["classes","My classes"],["subs","All submissions"],["merit","Merit chart"],["students","Students"],["tasks","Tasks"]];
   const clsOpt=(v,all)=>(all?`<option value="all"${v==="all"?" selected":""}>All classes</option>`:"")+Object.values(CN).map(c=>`<option${c===v?" selected":""}>${c}</option>`).join("");
   let body="";
+  if(tView==="classes"){body=teacherClasses()}else
   if(tView==="subs"){
     const list=TD.subs.filter(s=>(tCls==="all"||same(s.cls,tCls))&&(!tNeeds||!s.review||s.approved==="Pending"));
     body=`<div class="tbar"><label for="tCls">Class<select id="tCls">${clsOpt(tCls,1)}</select></label><label class="chk"><input type="checkbox" id="tNeeds"${tNeeds?" checked":""}> Needs a check</label><span class="cnt">${list.length} submissions</span></div>
@@ -1111,13 +1142,13 @@ function renderT(){setView();
 }
 $("#tBody").addEventListener("submit",async e=>{
   if(e.target.id==="tLogin"){e.preventDefault();const pin=$("#tPin").value.trim();if(!pin)return;
-    try{TD=await api("teacher",{pin});TP=pin;sset("sb-tpin",pin,true);document.body.classList.remove("tl");tView="subs";render();renderT();scrollTo(0,0)}catch(x){$("#tErr").textContent=x.message;$("#tErr").hidden=false}}
+    try{TD=await api("teacher",{pin});TP=pin;sset("sb-tpin",pin,true);document.body.classList.remove("tl");tView="classes";tcView=null;tStu=null;render();renderT();scrollTo(0,0)}catch(x){$("#tErr").textContent=x.message;$("#tErr").hidden=false}}
   if(e.target.id==="addSt"){e.preventDefault();const c=tCls==="all"?"Year 1":tCls;
     try{await api("addStudent",{pin:TP,cls:c,name:$("#nsName").value.trim(),studentPin:$("#nsPin").value.trim()});toast(`Added <b>${esc($("#nsName").value.trim())}</b> to ${esc(c)}.`);await loadT()}catch(x){toast(esc(x.message))}}
 });
 $("#tBody").addEventListener("change",e=>{if(e.target.id==="tCls"){tCls=e.target.value;renderT()}if(e.target.id==="tNeeds"){tNeeds=e.target.checked;renderT()}});
 $("#tBody").addEventListener("click",async e=>{
-  const tv=e.target.closest("[data-tv]");if(tv){tView=tv.dataset.tv;if(tView!=="subs"&&tCls==="all")tCls="Year 1";renderT();return}
+  const tv=e.target.closest("[data-tv]");if(tv){tView=tv.dataset.tv;if(tView==="classes"){tcView=null;tStu=null}if(tView!=="subs"&&tCls==="all")tCls="Year 1";renderT();return}
   if(e.target.closest("#tOut")){tLogout();return}
   if(e.target.closest("#tRef")){TD=null;renderT();loadT();return}
   const rs=e.target.closest("[data-reason]");if(rs){$("#tReason").value=rs.dataset.reason;return}
@@ -1128,6 +1159,55 @@ $("#tBody").addEventListener("click",async e=>{
   if(e.target.closest("#seed")){try{const r=await api("seed",{pin:TP,tasks:sampleTasks()});toast(`Added ${r.added} sample tasks.`);Object.keys(TC).forEach(k=>delete TC[k]);await loadT();render()}catch(x){toast(esc(x.message))}}
 });
 
+
+/* ===== teacher portal: classes > students > one student's work ===== */
+const toCheck=s=>!s.review||s.approved==="Pending";
+const stuSubs=(cls,name)=>TD.subs.filter(x=>same(x.cls,cls)&&same(x.name,name));
+async function tLoadTasks(cls){if(TC[cls]===0)return;TC[cls]=0;try{TC[cls]=(await api("tasks",{cls})).tasks}catch(e){TC[cls]=undefined;toast(esc(e.message))}renderT()}
+function teacherClasses(){
+  const crumbs=[`<button class="crumb" data-tback="0">My classes</button>`];
+  if(!tcView){
+    return `<div class="crumbs">${crumbs}</div><div class="tclasses">${S.map(st=>{const c=CN[st.id],n=TD.roster.filter(r=>same(r.cls,c)&&r.active).length,w=TD.subs.filter(x=>same(x.cls,c)&&toCheck(x)).length;
+      return `<button class="tclass" data-tc="${c}" style="--c:${C[st.c]}"><svg class="bee" viewBox="0 0 120 100" aria-hidden="true">${bee(C[st.c],"#d8efff",st.id.length)}</svg><b>${c}</b><span>${n} student${n===1?"":"s"}</span>${w?`<em>${w} to check</em>`:`<i>All checked</i>`}</button>`}).join("")}</div>`}
+  const st=S.find(x=>CN[x.id]===tcView),tasks=TC[tcView];
+  crumbs.push(`<button class="crumb" data-tback="1">${esc(tcView)}</button>`);
+  if(!Array.isArray(tasks)){if(tasks===undefined)tLoadTasks(tcView);return `<div class="crumbs">${crumbs.join("<span>›</span>")}</div><div class="cempty">Loading ${esc(tcView)}…</div>`}
+  const W=weeksOf(tasks);if(tWeek>=W.length)tWeek=0;const wk=W[tWeek];
+  const wkTasks=wk?tasks.filter(t=>t.week===wk.w&&modeOf(t)!=="none"):[];
+  const weeks=`<div class="tweeks">${W.map((w,i)=>`<button class="fl" aria-pressed="${i===tWeek}" data-tw="${i}">Week ${w.w} · ${dm(w.s)}</button>`).join("")}</div>`;
+  const chart=TD.charts[tcView]||[];
+  if(!tStu){
+    const studs=TD.roster.filter(r=>same(r.cls,tcView)&&r.active);
+    return `<div class="crumbs">${crumbs.join("<span>›</span>")}</div>${weeks}
+    ${studs.length?`<div class="tstuds">${studs.map((r,i)=>{const ss=stuSubs(tcView,r.name),done=wkTasks.filter(t=>ss.some(x=>x.taskId===t.id)).length,w=ss.filter(toCheck).length,tot=(chart.find(c=>same(c.name,r.name))||{}).total||0;
+      return `<button class="tstud" data-ts="${esc(r.name)}"><svg class="bee" viewBox="0 0 120 100" aria-hidden="true">${bee(C[st.c],tot>=45?"#ffd75e":"#d8efff",i)}</svg><span class="nm">${esc(r.name)}</span><span class="pr"><span class="cbar"><i style="width:${wkTasks.length?done/wkTasks.length*100:0}%"></i></span>${done}/${wkTasks.length} handed in</span><span class="pp">${HEXI}${tot}</span>${w?`<em>${w} to check</em>`:""}</button>`}).join("")}</div>`
+    :`<div class="cempty">No students in ${esc(tcView)} yet. Add them in Students.</div>`}`}
+  // one student's portal
+  crumbs.push(`<span class="crumb now">${esc(tStu)}</span>`);
+  const r=TD.roster.find(x=>same(x.cls,tcView)&&same(x.name,tStu))||{},c=chart.find(x=>same(x.name,tStu))||{work:0,merit:0,total:0},ss=stuSubs(tcView,tStu);
+  const rows=wkTasks.slice().sort((a,b)=>skey(a.skill).localeCompare(skey(b.skill))||TORDER.indexOf(tkey(a.type))-TORDER.indexOf(tkey(b.type))).map(t=>{
+    const all=ss.filter(x=>x.taskId===t.id),last=all[0],k=tkey(t.type),past=Date.now()>new Date(t.due).getTime();
+    let chip;if(!last)chip=past?'<span class="badge late">Missing</span>':'<span class="badge">Not handed in yet</span>';
+    else if(last.approved==="Pending")chip='<span class="badge wait">Quiz done · approve points</span>';
+    else if(last.review==="Corrections")chip='<span class="badge late">Sent back for corrections</span>';
+    else if(last.review==="Done")chip='<span class="badge on">Checked</span>';
+    else chip=`<span class="badge wait">${last.version>1?"Corrections handed in":"New · needs review"}</span>`;
+    return `<div class="trow" style="--t:${TYPES[k].c}"><span class="type"><i>${ICON[k]}</i></span><div class="ti"><b>${esc(t.title)}</b><span>${esc(t.skill)} · ${TYPES[k].n} · due ${fmtT(t.due)}</span>
+      <div class="tchips">${chip}${last?`<span class="badge ${last.status==="Late"?"late":"on"}">${esc(all[all.length-1].status)}</span>`:""}${last&&all[all.length-1].points?`<span class="pill">+${all[all.length-1].points}</span>`:""}${all.length>1?`<span class="pill">${all.length} versions</span>`:""}${last&&(last.voice)?'<span class="pill">Voice note</span>':""}${last&&last.grade?`<span class="pill">${esc(last.grade)}</span>`:""}</div></div>
+      ${last?`<div class="tact"><button class="btn main sm" data-review="${last.id}">${toCheck(last)?"Review":"Open"}</button>${all.slice(1).map((x,i)=>`<button class="fl" data-review="${x.id}">v${x.version||all.length-1-i}</button>`).join("")}</div>`:""}</div>`}).join("");
+  return `<div class="crumbs">${crumbs.join("<span>›</span>")}</div>
+    <div class="tme"><svg class="bee" viewBox="0 0 120 100" aria-hidden="true">${bee(C[st.c],c.total>=45?"#ffd75e":"#d8efff",3)}</svg><div><b>${esc(tStu)}</b><span>${esc(tcView)} · PIN ${esc(r.pin||"")}</span></div>
+      <div class="tmepts"><b>${c.total}</b><span>Bee Points · work ${c.work} · merits ${c.merit}</span></div></div>
+    <div class="tmerit"><label for="tReason" class="grow">Give a merit<input id="tReason" placeholder="Reason, e.g. Great participation" maxlength="120"></label><span class="mb">${[1,2,5,-1].map(p=>`<button class="mbtn${p<0?" neg":""}" data-cls="${esc(tcView)}" data-name="${esc(tStu)}" data-p="${p}">${p>0?"+":"−"}${Math.abs(p)}</button>`).join("")}</span></div>
+    ${weeks}
+    ${rows?`<div class="trows">${rows}</div>`:`<div class="cempty">No quizzes, homework or assignments in this week.</div>`}`;
+}
+$("#tBody").addEventListener("click",e=>{
+  const c=e.target.closest("[data-tc]");if(c){tcView=c.dataset.tc;tStu=null;tWeek=0;renderT();$("#teacher").scrollIntoView();return}
+  const s2=e.target.closest("[data-ts]");if(s2){tStu=s2.dataset.ts;renderT();$("#teacher").scrollIntoView();return}
+  const b=e.target.closest("[data-tback]");if(b){if(b.dataset.tback==="0"){tcView=null;tStu=null}else tStu=null;renderT();return}
+  const w=e.target.closest("[data-tw]");if(w){tWeek=+w.dataset.tw;renderT()}
+});
 
 /* ===== teacher review: view work, mark up, feedback, send back ===== */
 let rvS=null,rvStrokes=[],rvCol="#e5322d",rvCan=null,rvImg=null,rvDraw=null;
@@ -1211,7 +1291,7 @@ document.addEventListener("click",e=>{
   if(e.target.closest("#copyMail")){const t=$("#mail").textContent;const sel=()=>{const r=document.createRange();r.selectNodeContents($("#mail"));const g=getSelection();g.removeAllRanges();g.addRange(r)};
     try{navigator.clipboard.writeText(t).then(()=>toast("Email copied."),()=>{sel();toast("Email selected. Copy it from here.")})}catch(x){sel();toast("Email selected. Copy it from here.")}return}
   const a=e.target.closest("[data-go]");if(!a)return;
-  if(a.dataset.tv){tView=a.dataset.tv;if(tView!=="subs"&&tCls==="all")tCls="Year 1";renderT()}
+  if(a.dataset.tv){tView=a.dataset.tv;if(tView==="classes"){tcView=null;tStu=null}if(tView!=="subs"&&tCls==="all")tCls="Year 1";renderT()}
   if(a.dataset.type)goType(a.dataset.type);
   document.querySelectorAll(".ngrp a").forEach(x=>x.classList.toggle("act",x===a));
   closeNav()});
